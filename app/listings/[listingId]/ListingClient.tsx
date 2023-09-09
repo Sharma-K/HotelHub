@@ -3,7 +3,7 @@ import Container from "@/app/components/Container";
 import { categories } from "@/app/components/navbar/Categories";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
-import { SafeUser } from "@/app/types";
+import { SafeUser, SafeListing, SafeReservation } from "@/app/types";
 import { Listing, Reservation } from "@prisma/client";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -21,8 +21,8 @@ const initialDateRange = {
 
 }
 interface ListingClient{
-    reservation?: Reservation[];
-    listing: Listing & {
+    reservation?: SafeReservation[];
+    listing: SafeListing & {
         user: SafeUser
     }
     currentUser: SafeUser | null
@@ -56,7 +56,7 @@ const ListingClient: React.FC<ListingClient> = ({reservation = [], listing, curr
     
     const onCreateReservation = useCallback(()=>{
         if(!currentUser) return loginModal.onOpen();
-
+        
         setIsLoading(true);
         axios.post('/api/reservations', {
             totalPrice,
@@ -66,7 +66,7 @@ const ListingClient: React.FC<ListingClient> = ({reservation = [], listing, curr
         }).then(()=>{
             toast.success('Listing reserved!');
             setDateRange(initialDateRange);
-            router.refresh();
+            router.push('/trips');
         }).catch(()=>{
             toast.error('Something went wrong');
         }).finally(()=>{
@@ -86,8 +86,8 @@ const ListingClient: React.FC<ListingClient> = ({reservation = [], listing, curr
     useEffect(()=>{
         if(dateRange.startDate && dateRange.endDate){
             const dayCount = differenceInCalendarDays(dateRange.endDate, dateRange.startDate)
-
-            if(dayCount && listing.price){
+              
+            if(dayCount>0 && listing.price){
                 setTotalPrice(dayCount*listing.price);
             }
             else{
