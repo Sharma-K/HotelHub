@@ -30,7 +30,14 @@ const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
            return loginModal.onOpen();
         }
         rentModal.onOpen();
-    },[currentUser, loginModal, rentModal])
+    },[currentUser, loginModal, rentModal]);
+
+    const handleClick = (val: string) => {
+        router.push(`/${val}`);
+        setIsOpen(false);
+
+    }
+    
     return  (
         <div className="relative"> 
         <div className="flex flex-row items-center gap-3">
@@ -49,10 +56,10 @@ const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
                 <div className="flex flex-col cursor-pointer">
                     {currentUser? (
                         <>
-                    <MenuItem onClick={()=>router.push('/trips')} label='My Trips' />
-                    <MenuItem onClick={()=>router.push('/favorites')} label='My Favorites' />
-                    <MenuItem onClick={()=>router.push('/reservations')} label='My Reservations' />
-                    <MenuItem onClick={()=>router.push('/properties')} label='My Properties' />
+                    <MenuItem onClick={()=> handleClick('trips')} label='My Trips' />
+                    <MenuItem onClick={()=>handleClick('favorites')} label='My Favorites' />
+                    <MenuItem onClick={()=>handleClick('reservations')} label='My Reservations' />
+                    <MenuItem onClick={()=>handleClick('properties')} label='My Properties' />
                     <MenuItem onClick={rentModal.onOpen} label='HotelHub My Home' />
                    
                     <hr />
