@@ -72,6 +72,25 @@ const RentModal = ( ) =>{
         setSteps((val)=>val-1);
     }
     const onNext = () =>{
+        if(steps==STEPS.CATEGORY){
+            if(!category){
+                toast.error('Cannot be empty');
+                return;
+            }
+        }
+        if(steps==STEPS.LOCATION){
+            if(!location){
+                toast.error('Select a location');
+                return;
+            }
+        }
+        if(steps==STEPS.IMAGES){
+            if(!imageSrc){
+                toast.error('Please add an image');
+                return;
+            }
+        }
+       
         setSteps((val) => val+1);
     }
 
