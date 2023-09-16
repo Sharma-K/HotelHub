@@ -6,7 +6,7 @@ const Loader = () =>{
         <div className="h-[70vh] flex flex-col justify-center items-center">
             <PuffLoader 
             size={100}
-            color="red"
+            color="purple"
             />
 
         </div>

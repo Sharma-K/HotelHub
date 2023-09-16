@@ -26,7 +26,7 @@ const SearchModal = () =>{
     const [guestCount, setGuestCount] = useState(1);
     const [roomCount, setRoomCount] = useState(1);
     const [bathroomCount, setBathrommCount] = useState(1);
-    const [location, setLocation] = useState<CountrySelectValue>();
+    const [locationValue, setLocation] = useState<CountrySelectValue>();
 
     const [dateRange, setDateRange] = useState<Range>({
         startDate: new Date(),
@@ -56,7 +56,7 @@ const SearchModal = () =>{
         }
         const updateQuery: any = {
             ...currentQuery,
-            location: location?.value,
+            locationValue: locationValue?.value,
             guestCount,
             roomCount,
             bathroomCount
@@ -83,7 +83,7 @@ const SearchModal = () =>{
     },[
         steps,
         searchModal,
-        location,
+        locationValue,
         roomCount,
         bathroomCount,
         guestCount,
@@ -110,13 +110,13 @@ const SearchModal = () =>{
             subtitle="Find the perfect location"
             />
             <CountrySelect 
-            value={location}
+            value={locationValue}
             onChange={(value)=>{
                 setLocation(value as CountrySelectValue)
             }}
             />
             <hr />
-            <Map center={location?.latlng} />
+            <Map center={locationValue?.latlng} />
         </div>
     )
 
