@@ -13,12 +13,13 @@ const Search = () =>{
     const startDate = params?.get('startDate');
     const endDate = params?.get('endDate');
     const guestCount = params?.get('guestCount');
+    const category = params?.get('category');
 
     const locationLabel = useMemo(()=>{
        
-        if(locationValue) return getByValue(locationValue as string)?.label;
+        if(category) return `${category}`;
 
-        return 'Anywhere';
+        return 'Any Type';
     }, [getByValue, locationValue]);
 
     const durationLabel = useMemo(()=>{
@@ -35,9 +36,9 @@ const Search = () =>{
     },[startDate,endDate]);
 
     const guestLabel = useMemo(()=>{
-        if(guestCount) return `${guestCount} Guests`;
+        if(guestCount) return `${guestCount} Person`;
 
-        return 'Add guests';
+        return 'Add Person';
     },[guestCount])
 
 

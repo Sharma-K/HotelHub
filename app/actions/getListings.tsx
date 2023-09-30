@@ -50,10 +50,10 @@ export default async function getListings(params: IListingsParams){
             }
 
         }
-        if(locationValue){
-            query.locationValue = locationValue
+        // if(category){
+        //     query.category = category
 
-        }
+        // }
         if(startDate && endDate){
             query.NOT = {
                 reservations: {

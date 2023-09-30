@@ -1,89 +1,67 @@
 'use client';
 import Container from "../Container";
-import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
-import { GiBarn, GiBoatFishing, GiCactus, GiCastle, GiCaveEntrance, GiForestCamp, GiIsland, GiWindmill } from 'react-icons/gi';
+import {PiParkLight} from 'react-icons/pi'
 import { MdOutlineVilla} from 'react-icons/md';
-import {FaSkiing} from 'react-icons/fa';
-import {BsSnow} from 'react-icons/bs';
-import {IoDiamond} from 'react-icons/io5';
+import {BsShop, BsHospital} from 'react-icons/bs';
+import {IoDiamond, IoLibraryOutline} from 'react-icons/io5';
+import {IoIosFitness, IoIosCafe} from 'react-icons/io';
+import {FaTrainSubway} from 'react-icons/fa6'
+import {MdTempleHindu} from 'react-icons/md'
 import CategoryBox from "../CategoryBox";
+
 import { usePathname, useSearchParams } from "next/navigation";
 
 export const categories = [
-    {
-        label: 'Beach',
-        icon: TbBeach,
-        description: 'This property is close to the beach!'
-    },
-    {
-        label: 'Windmills',
-        icon: GiWindmill,
-        description: 'This property has windmills'
-    },
+   
     {
         label: 'Modern',
         icon: MdOutlineVilla,
-        description: 'This property is modern'
+        description: 'This pg is modern'
     },
     {
-        label: 'CountrySide',
-        icon: TbMountain,
-        description: 'This property is in countryside'
+        label: 'Gym',
+        icon: IoIosFitness,
+        description: 'This pg is near Gym'
     },
     {
-        label: 'Pools',
-        icon: TbPool,
-        description: 'This property has pools'
+        label: 'Metro',
+        icon: FaTrainSubway,
+        description: 'This pg is near Metro Station'
     },
     {
-        label: 'Islands',
-        icon: GiIsland,
-        description: 'This property is on an island'
+        label: 'Cafe',
+        icon: IoIosCafe,
+        description: 'This pg is near Cafe'
     },
     {
-        label: 'Lake',
-        icon: GiBoatFishing,
-        description: 'This property is close to lake'
+        label: 'Library',
+        icon: IoLibraryOutline,
+        description: 'This pg is near Library'
     },
     {
-        label: 'Skiing',
-        icon: FaSkiing,
-        description: 'This property has skiing activities'
+        label: 'Park',
+        icon: PiParkLight,
+        description: 'This pg is close to Park'
     },
     {
-        label: 'Castles',
-        icon: GiCastle,
-        description: 'This property is in a castle'
-    },
-    {
-        label: 'Camping',
-        icon: GiForestCamp,
-        description: 'This property has camping activities'
-    },
-    {
-        label: 'Arctic',
-        icon: BsSnow,
-        description: 'This property is in snow'
-    },
-    {
-        label: 'Cave',
-        icon: GiCaveEntrance,
-        description: 'This property is in a cave'
-    },
-    {
-        label: 'Desert',
-        icon: GiCactus,
-        description: 'This property is in a desert'
-    },
-    {
-        label: 'Barns',
-        icon: GiBarn,
-        description: 'This property is in the barn'
+        label: 'Hospital',
+        icon: BsHospital,
+        description: 'This pg is near Hospital'
     },
     {
         label: 'Lux',
         icon: IoDiamond,
-        description: 'This property is luxurious'
+        description: 'This pg is luxurious'
+    },
+    {
+        label: 'Market',
+        icon: BsShop,
+        description: 'This pg is near Market'
+    },
+    {
+        label: 'Temple',
+        icon: MdTempleHindu,
+        description: 'This pg is close to Temple'
     }
 ]
 const Categories = () => {

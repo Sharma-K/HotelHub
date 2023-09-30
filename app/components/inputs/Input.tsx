@@ -1,7 +1,7 @@
 'use client';
 
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import {BiDollar} from 'react-icons/bi';
+import {BiRupee} from 'react-icons/bi';
 interface InputProps{
     id: string,
     label: string,
@@ -16,7 +16,7 @@ const Input: React.FC<InputProps> = ({id, label, type, disabled, register, requi
     return (
         <div className="w-full relative">
             {formatPrice&&(
-                <BiDollar className="text-neutral-700 absolute top-5 left-2" />
+                <BiRupee className="text-neutral-700 absolute top-5 left-2" />
             )}
             <input id={id} disabled={disabled} {...register(id, {required})} placeholder=" " type={type}
              className={`peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed 

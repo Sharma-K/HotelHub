@@ -158,7 +158,7 @@ const RentModal = ( ) =>{
             <div className="flex flex-col gap-8">
                 <Heading 
                 title="Where is your place loacted?"
-                subtitle="Help guests find you"
+                subtitle="Help others find you"
                 />
                 <CountrySelect
                 onChange={(value)=> setCustomValue('location', value)}
@@ -177,8 +177,8 @@ const RentModal = ( ) =>{
                 subtitle="What amenities do you have?"
                 />
                 <Counter
-                title="Guests"
-                subtitle="How Many Guests do you allow?"
+                title="Persons"
+                subtitle="How many person do you allow?"
                 value={guestCount}
                 onChange={(value)=>setCustomValue('guestCount', value)}
                 />
@@ -206,7 +206,7 @@ const RentModal = ( ) =>{
             <div className="flex flex-col gap-8">
                 <Heading 
                 title="Add a photo of your place"
-                subtitle="Show guests what your place looks like"
+                subtitle="Show others what your place looks like"
                 />
                 <ImageUpload 
                 value={imageSrc}
@@ -274,7 +274,7 @@ const RentModal = ( ) =>{
         onClose={rentModal.onClose}
         onSubmit={handleSubmit(onSubmit)}
         actionLabel={actionLabel}
-        title="HotelHub your home"
+        title="PgFind your Pg"
         secondaryActionLabel={secondaryACtionLabel}
         secondaryAction={steps===STEPS.CATEGORY?undefined: onBack}
         body={bodyContent}

@@ -12,8 +12,11 @@ import SearchModal from './components/Modals/SearchModal';
 const font = Nunito({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'HotelHub',
-  description: 'Book hotel with one click!',
+  title: 'Pg Finder',
+  description: 'Book Pg with one click!',
+  icons:{
+    icon: '/logo.png'
+  }
 }
 
 export default async function RootLayout({
