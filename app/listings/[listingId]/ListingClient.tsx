@@ -98,7 +98,7 @@ const ListingClient: React.FC<ListingClient> = ({reservation = [], listing, curr
                 const day = temp.getDate();
                 
             
-                if(dayCount==day) setTotalPrice(listing.price);
+                if(dayCount>=day-1) setTotalPrice(listing.price);
                 else
                 setTotalPrice((dayCount*listing.price)/30);
             }
