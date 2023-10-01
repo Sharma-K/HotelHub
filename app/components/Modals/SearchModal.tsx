@@ -11,11 +11,11 @@ import CategoryInput from "../inputs/CategoryInput";
 import qs from 'query-string';
 import { formatISO } from "date-fns";
 import Heading from "../Heading";
-import Calender from "../inputs/Calender";
+import { BiRupee } from "react-icons/bi";
 import Counter from "../inputs/Counter";
 enum STEPS{
     TYPE = 0,
-    DATE = 1,
+    PRICE = 1,
     INFO =2
 }
 
@@ -29,17 +29,15 @@ const SearchModal = () =>{
     const [roomCount, setRoomCount] = useState(1);
     const [bathroomCount, setBathrommCount] = useState(1);
     const [category, setCategory] = useState('');
+    const [price, setPrice] = useState(1);
     const [locationValue, setLocation] = useState<CountrySelectValue>();
+
 
     const [dateRange, setDateRange] = useState<Range>({
         startDate: new Date(),
         endDate: new Date(),
         key: 'selection'
     })
-
-    const Map = useMemo(()=>dynamic(()=>import('../Map'),{
-        ssr:false
-    }),[location]);
 
     const onBack = useCallback(()=>{
         setStep((value)=> value-1);
@@ -62,15 +60,9 @@ const SearchModal = () =>{
            category,
             guestCount,
             roomCount,
-            bathroomCount
+            bathroomCount,
+            price
         };
-
-        if(dateRange.startDate){
-            updateQuery.startDate = formatISO(dateRange.startDate);
-        }
-        if(dateRange.endDate){
-            updateQuery.endDate = formatISO(dateRange.endDate);
-        }
 
         const url = qs.stringifyUrl({
             url: '/',
@@ -90,12 +82,16 @@ const SearchModal = () =>{
         roomCount,
         bathroomCount,
         guestCount,
-        dateRange,
         onNext,
         params,
         router,
-        category
+        category,
+        price
     ])
+
+    const changeHandler = (e: any) =>{
+        setPrice(e.target.value);
+    }
 
     const actionLabel = useMemo(()=>{
         if(steps===STEPS.INFO) return 'Search';
@@ -149,20 +145,32 @@ const SearchModal = () =>{
         </div>
      )
 
-    if(steps===STEPS.DATE){
+    if(steps===STEPS.PRICE){
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading 
-                title="When do you want to go?"
-                subtitle="Make sure everyone is free!"
+                title="Now, set your price"
+                subtitle="How much do you charge per night?"
                 />
-                <Calender 
-                value={dateRange}
-                onChange={(value)=>{
-                    setDateRange(value.selection)
-                }}
-                />
-               
+               {/* <input style={} type="number" id="price" placeholder="Enter price" value={price} onChange={changeHandler} /> */}
+               <div className="w-full relative">
+            
+                <BiRupee className="text-neutral-700 absolute top-5 left-2" />
+           
+            <input id="price" onChange={changeHandler}  placeholder=" " type="number"
+             className={`peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed 
+             'pl-4'
+        
+            `} />
+            <label className={`absolute text-md duration-150 transform -translate-y-3 top-5 z-10 origin-[0]  'left-4'
+            peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0
+            peer-focus:scale-75
+            peer-focus:-translate-y-4
+            `}>
+            </label>
+
+        </div>
             </div>
         )
 

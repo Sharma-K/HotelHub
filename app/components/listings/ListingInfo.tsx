@@ -37,7 +37,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                    <Avatar src={user?.image} />
                 </div>
                 <div className="flex flex-row items-center font-light gap-4 text-neutral-500">
-                 {guestCount} guests
+                 {guestCount} person
                 </div>
                 <div className="flex flex-row items-center font-light gap-4 text-neutral-500">
                  {roomCount} rooms

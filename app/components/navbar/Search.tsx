@@ -14,6 +14,7 @@ const Search = () =>{
     const endDate = params?.get('endDate');
     const guestCount = params?.get('guestCount');
     const category = params?.get('category');
+    const price = params?.get('price');
 
     const locationLabel = useMemo(()=>{
        
@@ -22,18 +23,12 @@ const Search = () =>{
         return 'Any Type';
     }, [getByValue, locationValue]);
 
-    const durationLabel = useMemo(()=>{
-        if(startDate&&endDate){
-            const start = new Date(startDate as string);
-            const end = new Date(endDate as string);
-            let diff = differenceInDays(end, start);
-
-            if(diff === 0) diff=1;
-
-            return `${diff} days`
+    const priceLabel = useMemo(()=>{
+        if(price){
+            return `${price} night`
         }
-        return "Any Week"
-    },[startDate,endDate]);
+        return "Any Budget"
+    },[price]);
 
     const guestLabel = useMemo(()=>{
         if(guestCount) return `${guestCount} Person`;
@@ -50,7 +45,7 @@ const Search = () =>{
 
             </div>
             <div className="hidden sm:block text0sm font-semibold px-6 border-x-[1px] flex-1 text-center">
-                {durationLabel}
+                {priceLabel}
                 
             </div>
             <div className="text-sm pl-6 pr-2 text-gray-600 flex flex-row items-center gap-3">

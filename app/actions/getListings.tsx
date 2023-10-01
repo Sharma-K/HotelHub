@@ -7,7 +7,8 @@ export interface IListingsParams{
     startDate?: string,
     endDate?: string,
     locationValue?: string,
-    category?: string
+    category?: string,
+    price?: number
 }
 
 export default async function getListings(params: IListingsParams){
@@ -19,7 +20,7 @@ export default async function getListings(params: IListingsParams){
             guestCount,
             startDate,
             endDate,
-            locationValue,
+            price,
             category
         
         } = params;
@@ -54,6 +55,12 @@ export default async function getListings(params: IListingsParams){
         //     query.category = category
 
         // }
+        if(price){
+            query.price = {
+                lte: +price
+            }
+
+        }
         if(startDate && endDate){
             query.NOT = {
                 reservations: {
