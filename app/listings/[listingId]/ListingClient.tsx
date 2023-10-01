@@ -85,12 +85,25 @@ const ListingClient: React.FC<ListingClient> = ({reservation = [], listing, curr
 
     useEffect(()=>{
         if(dateRange.startDate && dateRange.endDate){
-            const dayCount = differenceInCalendarDays(dateRange.endDate, dateRange.startDate)
+          const month = dateRange.endDate.getMonth();
+         const year = dateRange.endDate.getFullYear();
+ 
+
+          
+            
+            const dayCount = differenceInCalendarDays(dateRange.endDate, dateRange.startDate);
               
-            if(dayCount>0 && listing.price){
-                setTotalPrice(dayCount*listing.price);
+            if(dayCount>=1 && listing.price){
+                const temp = new Date(year, month+1, 0);
+                const day = temp.getDate();
+                
+            
+                if(dayCount==day) setTotalPrice(listing.price);
+                else
+                setTotalPrice((dayCount*listing.price)/30);
             }
             else{
+                
                 setTotalPrice(listing.price);
             }
         }

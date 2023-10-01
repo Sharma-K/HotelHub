@@ -25,7 +25,7 @@ const Search = () =>{
 
     const priceLabel = useMemo(()=>{
         if(price){
-            return `${price} night`
+            return `${price} month`
         }
         return "Any Budget"
     },[price]);
